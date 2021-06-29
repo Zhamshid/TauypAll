@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/style_with_radius"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+
+
+    <!--ImageView
+        android:id="@+id/icons"
+        android:padding="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_profile"/-->
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/icons"
+        android:scaleType="centerCrop"
+        android:padding="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_profile"
+        />
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:text="Serikzhan Parmanov"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/font_artifakt"
+            android:layout_marginLeft="10dp"
+            android:text="+7 (707) 523-97-97"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icon_edit"
+        android:padding="15dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_edit"/>
+
+</LinearLayout>

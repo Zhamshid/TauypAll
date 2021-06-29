@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.login.SignInActivity">
+
+    <TextView
+        android:id="@+id/textViewTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="280dp"
+        android:padding="5dp"
+        android:text="@string/log_in"
+        android:textColor="@color/mainColor"
+        android:textSize="36dp"
+        android:fontFamily="@font/font_artifakt_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/numberET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:background="@drawable/edit_round"
+        android:hint="+7(   )   -  -  "
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textColorHint="@color/mainColor"
+        android:textColor="@color/black"
+        android:fontFamily="@font/font_artifakt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/edit_round"
+        android:hint="@string/password"
+        android:fontFamily="@font/font_artifakt"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColorHint="@color/mainColor"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/SigninBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botton_round"
+        android:text="@string/log_in"
+        android:fontFamily="@font/font_artifakt_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+
+    <TextView
+        android:id="@+id/ForgetTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_psw"
+        android:fontFamily="@font/font_artifakt_bold"
+        android:textColor="@color/mainColor"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/passwordET"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+
+    <TextView
+        android:id="@+id/registerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:textColor="@color/mainColor"
+        android:textSize="20dp"
+        android:fontFamily="@font/font_artifakt_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SigninBT" />
+
+    <ImageButton
+        android:id="@+id/setting_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings_2"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/SigninBT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ForgetTV" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

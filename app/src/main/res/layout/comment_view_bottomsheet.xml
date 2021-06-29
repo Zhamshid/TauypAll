@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.home.messages.MessagesFragment"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bottomsheet"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Пока что нет отзыва!!!"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:padding="15dp"
+        android:visibility="visible"
+        android:id="@+id/pustoi"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comment_view_recycler"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+</LinearLayout>

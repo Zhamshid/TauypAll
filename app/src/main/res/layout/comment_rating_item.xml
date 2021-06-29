@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/style_with_radius"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/comment_prof_img"
+        android:src="@drawable/ic_profile"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/comment_prof_img"
+        android:layout_marginStart="5dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/comment_prof_img">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_user"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:text="Zhamshid"
+            android:textSize="22sp"
+            android:textColor="@color/design_default_color_primary_dark"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginLeft="20dp">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/ic_baseline_star_24"/>
+           <TextView
+               android:id="@+id/view_star"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="5.0"
+               android:textColor="@color/design_default_color_primary_dark"
+               android:layout_marginLeft="10dp"
+               android:textSize="18sp"/>
+       </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_rat"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:text="username"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

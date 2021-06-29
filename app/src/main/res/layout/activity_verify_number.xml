@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.login.VerifyNumberActivity"
+    >
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите код из СМС"
+        android:fontFamily="@font/font_artifakt_bold"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:layout_marginTop="260dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправлен на номер"
+        android:fontFamily="@font/font_artifakt"
+        android:textColor="@color/mainColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="+7 (771) 973-17-17"
+        android:textStyle="bold"
+        android:fontFamily="@font/font_artifakt_bold"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+
+    <LinearLayout
+        android:padding="4dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMobile">
+
+        <EditText
+            android:id="@+id/code1"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/code2"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor"
+            android:layout_marginLeft="4dp" />
+
+        <EditText
+            android:id="@+id/code3"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor"
+            android:layout_marginLeft="4dp" />
+
+        <EditText
+            android:id="@+id/code4"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor"
+            android:layout_marginLeft="4dp" />
+
+        <EditText
+            android:id="@+id/code5"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor"
+            android:layout_marginLeft="4dp" />
+
+        <EditText
+            android:id="@+id/code6"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/mainColor"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:ignore="LabelFor"
+            android:layout_marginLeft="4dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Не пришло СМС?"
+            android:textColor="@color/black"
+            android:fontFamily="@font/font_artifakt"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/text_resend_verify_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="ПОЛУЧИТЬ СНОВА"
+            android:textColor="@color/mainColor"
+            android:textSize="16sp"
+            android:fontFamily="@font/font_artifakt_bold"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_lay_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <Button
+            android:id="@+id/btn_verify_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botton_round"
+            android:text="Продолжить"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font_artifakt_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_gravity="center_horizontal"
+            tools:ignore="MissingConstraints" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
