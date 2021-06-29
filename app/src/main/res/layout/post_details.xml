@@ -111,7 +111,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@mipmap/line"
                 android:backgroundTint="@color/browser_actions_bg_grey"
                 />
             <RelativeLayout
@@ -200,7 +199,6 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@mipmap/line"
                 android:backgroundTint="@color/browser_actions_bg_grey"
                 />
             <LinearLayout
@@ -248,7 +246,6 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="@mipmap/line"
                     android:backgroundTint="@color/browser_actions_bg_grey"
                     />
                 <LinearLayout
@@ -328,14 +325,12 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@mipmap/line"
                 android:backgroundTint="@color/mainColor"
                 />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@mipmap/line"
                 android:backgroundTint="@color/browser_actions_bg_grey"
                 />
 

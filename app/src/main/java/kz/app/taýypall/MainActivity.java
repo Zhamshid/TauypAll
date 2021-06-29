@@ -1,10 +1,10 @@
 package kz.app.taýypall;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -26,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                startActivity(intent);finish();
+                startActivity(intent);
+                finish();
 
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
 
 
     }

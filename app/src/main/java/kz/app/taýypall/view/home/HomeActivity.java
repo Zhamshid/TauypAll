@@ -70,11 +70,11 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = homeFragment;
                             break;
 
-                        case R.id.nav_favorite:
-                            if(favortiresFragment == null)
-                                favortiresFragment = new FavortiresFragment();
-                            selectedFragment = favortiresFragment;
-                            break;
+//                        case R.id.nav_favorite:
+//                            if(favortiresFragment == null)
+//                                favortiresFragment = new FavortiresFragment();
+//                            selectedFragment = favortiresFragment;
+//                            break;
 
                         case R.id.nav_create:
                             if(createFragment == null)
