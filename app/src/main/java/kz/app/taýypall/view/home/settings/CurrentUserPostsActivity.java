@@ -1,16 +1,16 @@
 package kz.app.taýypall.view.home.settings;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,6 +50,8 @@ public class CurrentUserPostsActivity extends AppCompatActivity {
         post = new ArrayList<>();
         nestedScrollView = findViewById(R.id.nes_scr_view);
         readPosts();
+
+
     }
 
     @Override
@@ -58,10 +60,8 @@ public class CurrentUserPostsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_current_user_posts);
         toolbar_title = findViewById(R.id.toolbar_title);
         sharedPrefs = new SharedPrefsHelper(getBaseContext());
-        //String name_of_user = getActivity().getIntent().getExtras().getString("name_of_user");
         String number = sharedPrefs.getPhoneNumber();
         toolbar_title.setText(R.string.my_publish);
-
 
         back_left_arrow = findViewById(R.id.back_arrow_left);
         back_left_arrow.setVisibility(View.VISIBLE);

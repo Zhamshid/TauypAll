@@ -63,15 +63,13 @@ public class BaseFragment extends Fragment {
 
 
 
-    public void openActivity(Class className){
+    public void openActivity(Class className) {
 
-        Intent intent = new Intent(getContext() ,className);
-        startActivity(intent);getActivity().finish();
+        Intent intent = new Intent(getContext(), className);
+        startActivity(intent);
+        getActivity();
+        startActivity(intent);
 
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_layout,fragment)
-//                .commit();
     }
 
 

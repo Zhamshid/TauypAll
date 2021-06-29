@@ -65,11 +65,9 @@ public class ChangePassFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 
-        iz.setText("Change password");
+        iz.setText(R.string.change_psw);
         sharedPrefs = new SharedPrefsHelper(getContext());
         String number = sharedPrefs.getPhoneNumber();
-//        String first_psw = pass1.getText().toString();
-//        String second_psw = pass2.getText().toString();
 
         auth = FirebaseAuth.getInstance();
 
@@ -80,11 +78,11 @@ public class ChangePassFragment extends Fragment {
 
 
                 if (pass1.length() < 6) {
-                    Toast.makeText(getContext(), "Password is very simple!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.password_length, Toast.LENGTH_LONG).show();
                 } else if (pass1.getText().toString().equals("123456")) {
                     Toast.makeText(getContext(), "Password is very simple!", Toast.LENGTH_LONG).show();
                 } else if (!pass1.getText().toString().equals(pass2.getText().toString())) {
-                    Toast.makeText(getContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.psw_doesnt_match, Toast.LENGTH_LONG).show();
                 } else {
 
                     if (btn.getText().toString().equals(R.string.save)) {
@@ -94,10 +92,7 @@ public class ChangePassFragment extends Fragment {
                             getSms();
                         else if (btn.getText().toString().equals("Подтверждить код"))
                             init();
-                    Toast.makeText(getContext(), "Everything is fine", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 

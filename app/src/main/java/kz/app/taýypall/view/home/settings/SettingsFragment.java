@@ -121,6 +121,7 @@ public class SettingsFragment extends BaseFragment {
         list.add(new ProfileItem(R.drawable.ic_key, (R.string.change_psw)));
         list.add(new ProfileItem(R.drawable.ic_change_language_2, R.string.change_language));
         list.add(new ProfileItem(R.drawable.ic_my_posts, R.string.my_publish));
+        list.add(new ProfileItem(R.drawable.ic_credit_card, R.string.support_project));
 
         // Inflate the layout for this fragment
         sharedPrefs = new SharedPrefsHelper(getContext());
@@ -131,7 +132,6 @@ public class SettingsFragment extends BaseFragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         iz.setText(R.string.profile);
-        //String name_of_user = getActivity().getIntent().getExtras().getString("name_of_user");
         String number = sharedPrefs.getPhoneNumber();
 
 
@@ -265,24 +265,4 @@ public class SettingsFragment extends BaseFragment {
         int item_selected = preferences.getInt("CheckedItem", 2);
         setLocale(language, item_selected);
     }
-
-    public void openFragment(Fragment fragment) {
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_layout, fragment)
-                .commit();
-    }
-
-    public void openActivity(Class className) {
-
-        Intent intent = new Intent(getContext(), className);
-        startActivity(intent);
-        getActivity();
-        startActivity(intent);
-        getActivity().finish();
-
-    }
-
-
 }

@@ -79,9 +79,6 @@ public class ChangeNameFragment extends Fragment {
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         birth = getView().findViewById(R.id.editBirth);
-        iz = getView().findViewById(R.id.toolbar_title);
-        btn = getView().findViewById(R.id.button);
-        profile_image = getView().findViewById(R.id.profile_photo);
 
         ref = FirebaseDatabase.getInstance().getReference();
         sharedPrefs = new SharedPrefsHelper(getContext());
@@ -89,13 +86,12 @@ public class ChangeNameFragment extends Fragment {
         storageReference = storage.getReference();
         back_left_arrow.setVisibility(View.VISIBLE);
 
-        iz.setText(R.string.change_name);
         back_left_arrow.setOnClickListener(v -> {
             onBackPressed();
         });
 
 
-        iz.setText("Изменить имя");
+        iz.setText(R.string.change_name);
         reference2 = FirebaseDatabase.getInstance().getReference("USERS");
         String number = sharedPrefs.getPhoneNumber();
 
@@ -138,46 +134,41 @@ public class ChangeNameFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.name_length, Toast.LENGTH_LONG).show();
             } else if (surname.length() == 0 || surname.length() < 2) {
                 Toast.makeText(getContext(), R.string.name_length, Toast.LENGTH_LONG).show();
-                if (name.length() == 0 || name.length() < 4) {
-                    Toast.makeText(getContext(), "The minimum character of name must be 4", Toast.LENGTH_LONG).show();
-                } else if (surname.length() == 0 || surname.length() < 4) {
-                    Toast.makeText(getContext(), "The minimum character of surname must be 4", Toast.LENGTH_LONG).show();
-                } else {
+            } else {
 
-                    ref.child(AppConstants.USERS).
-                            child(number).
-                            child(AppConstants.INFO).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String upd_name = snapshot.child("name").getValue().toString();
-                            edited_name = name.getText().toString();
-                            edited_name2 = surname.getText().toString();
-                            edited_full_name = edited_name + " " + edited_name2;
-                            upd_name = (edited_full_name);
+                ref.child(AppConstants.USERS).
+                        child(number).
+                        child(AppConstants.INFO).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String upd_name = snapshot.child("name").getValue().toString();
+                        edited_name = name.getText().toString();
+                        edited_name2 = surname.getText().toString();
+                        edited_full_name = edited_name + " " + edited_name2;
+                        upd_name = (edited_full_name);
 
 
-                            //ProfileItem
-                            //UserItem item = new UserItem(upd_name)
+                        //ProfileItem
+                        //UserItem item = new UserItem(upd_name)
 
 
-                            ref.child("USERS")
-                                    .child(number)
-                                    .child(AppConstants.INFO)
-                                    .child("name")
-                                    .setValue(upd_name);
+                        ref.child("USERS")
+                                .child(number)
+                                .child(AppConstants.INFO)
+                                .child("name")
+                                .setValue(upd_name);
 
-                            ((HomeActivity) getActivity()).openFragment(new SettingsFragment());
-                        }
+                        ((HomeActivity) getActivity()).openFragment(new SettingsFragment());
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-                }
+                    }
+                });
             }
-        });
-    }
+    });
+}
 
 
     public static ChangeNameFragment newInstance(String s) {
