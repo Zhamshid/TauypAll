@@ -56,7 +56,7 @@ public class BaseFragment extends Fragment {
         return ref;
     }
 
-    public void showMessage(String s){
+    public void showMessage(int s){
         Toast.makeText(getContext(), s ,Toast.LENGTH_SHORT).show();
     }
 

@@ -45,6 +45,7 @@ import kz.app.taýypall.view.login.SignInActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,6 +111,8 @@ public class SettingsFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_settings, container, false);
+
+
     }
 
 
@@ -117,7 +120,6 @@ public class SettingsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         list = new ArrayList<>();
         list.add(new ProfileItem(R.drawable.ic_profile, "", "", R.drawable.ic_edit));
-
         list.add(new ProfileItem(R.drawable.ic_key, (R.string.change_psw)));
         list.add(new ProfileItem(R.drawable.ic_change_language_2, R.string.change_language));
         list.add(new ProfileItem(R.drawable.ic_my_posts, R.string.my_publish));
@@ -181,6 +183,9 @@ public class SettingsFragment extends BaseFragment {
                         break;
                     case 3:
                         openActivity(CurrentUserPostsActivity.class);
+                        break;
+                    case 4:
+                        showDonate();
                         break;
                 }
             }
@@ -265,4 +270,17 @@ public class SettingsFragment extends BaseFragment {
         int item_selected = preferences.getInt("CheckedItem", 2);
         setLocale(language, item_selected);
     }
+
+    public void showDonate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(true);
+        builder.setView(R.layout.donate_layout);
+        AlertDialog alert=builder.create();
+        alert.getWindow().setLayout(WRAP_CONTENT,
+                WRAP_CONTENT);
+//        alert.getWindow().setLayout(MATCH_PARENT,
+//                500);
+        alert.show();
+    }
+
 }

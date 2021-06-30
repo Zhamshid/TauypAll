@@ -250,8 +250,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         Dialog.show();
         Dialog.getWindow().setLayout(WRAP_CONTENT,
                 500);
-        Dialog.getWindow().setLayout(MATCH_PARENT,
-                1000);
+//        Dialog.getWindow().setLayout(MATCH_PARENT,
+//                1000);
         Dialog.getWindow().getAttributes().windowAnimations = R.style.animation_dial;
         Dialog.getWindow().setGravity(Gravity.CENTER);
     }

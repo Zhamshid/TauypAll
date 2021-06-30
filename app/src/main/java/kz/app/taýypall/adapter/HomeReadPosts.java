@@ -50,8 +50,7 @@ public class HomeReadPosts  extends RecyclerView.Adapter<HomeReadPosts.ViewHolde
         ProductGetItem post1 = post.get(position);
         holder.postName.setText(post1.getProductInfo().getZogolovok());
         holder.cost.setText(post1.getProductInfo().getBaga());
-
-
+        holder.City.setText(post1.getProductInfo().getCity());
 
         StorageReference str1 = FirebaseStorage.getInstance().getReference().child("Images");
         str.child(post1.getProductInfo().getStorageName()).getDownloadUrl().addOnSuccessListener(uri -> {
@@ -92,6 +91,11 @@ public class HomeReadPosts  extends RecyclerView.Adapter<HomeReadPosts.ViewHolde
             City = itemView.findViewById(R.id.image_city);
             clickCardView = itemView.findViewById(R.id.cardViewClick);
             parentLayot = itemView.findViewById(R.id.parent_layot);
+
+
+
+
+
         }
     }
 

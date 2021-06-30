@@ -6,10 +6,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import kz.app.taýypall.R;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -47,11 +50,16 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent(this ,className);
         startActivity(intent);finish();
 
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_layout,fragment)
-//                .commit();
     }
+
+    public void openFragment(Fragment fragment){
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_layout,fragment)
+                .commit();
+    }
+
 
 
 }

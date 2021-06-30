@@ -18,14 +18,14 @@
     <string name="my_publish">Мои публикации</string>
     <string name="type_msg">Введите сообщение...</string>
     <string name="search">Поиск</string>
-    <string name="price">Цена</string>
+    <string name="price">Место нахождения или адрес, который может забрать искатель</string>
     <string name="city">Город</string>
     <string name="description">Описание</string>
     <string name="feedback">Ваши отзывы</string>
     <string name="news_for">Новости для вас</string>
     <string name="create_pub">Создать публикацию</string>
     <string name="more_details">Более подробная информация</string>
-    <string name="pub_title">Название публикации</string>
+    <string name="pub_title">Имя найденного предмета</string>
     <string name="contact_det">Ваши контактные данные</string>
     <string name="phone">Телефон</string>
     <string name="name_length">Имя должно состоять более чем из 2 символов</string>
@@ -59,5 +59,26 @@
     <string name="name_name">Имя</string>
     <string name="surname_name">Фамилия</string>
     <string name="support_project">Поддержать проект</string>
+    <string name="please_upload_image">Пожалуйста, загрузите изображение</string>
+    <string name="desc_lenght">Описание слишком мало</string>
+    <string name="put_all_lines">Заполните все строки</string>
+    <string name="almaty">Алматы</string>
+    <string name="nursultan">Нур-Cултан</string>
+    <string name="shymkent">Шымкент</string>
+    <string name="turkistan">Туркестан</string>
+    <string name="aktobe">Актобе</string>
+    <string name="atyrau">Атырау</string>
+    <string name="aktau">Актау</string>
+    <string name="oskemen">Усть-Каменогорск</string>
+    <string name="oral">Уральск</string>
+    <string name="kostanay">Костанай</string>
+    <string name="karagandy">Караганда</string>
+    <string name="pavlodar">Павлодар</string>
+    <string name="petropavl">Петропавл</string>
+    <string name="semei">Семей</string>
+    <string name="kyzylorda">Кызылорда</string>
+    <string name="no_connection">Нет подключения к интернету</string>
+
+
 
 </resources>

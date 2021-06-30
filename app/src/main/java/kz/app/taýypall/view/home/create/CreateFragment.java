@@ -127,8 +127,11 @@ public class CreateFragment extends BaseFragment {
                         TextUtils.isEmpty(phone)){
                     Toast.makeText(getContext(),"Заполните все строки!", Toast.LENGTH_SHORT).show();
                 } else if (opisanie.length()<25){
-                    Toast.makeText(getContext(), "Описание слишком мало!", Toast.LENGTH_SHORT).show();
-                }else{
+                    showMessage(R.string.desc_lenght);
+                }else if(imageUri == null){
+                    showMessage(R.string.please_upload_image);
+                }
+                else{
                     uploadImage();
                 }
             }

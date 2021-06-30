@@ -20,14 +20,14 @@
     <string name="my_publish">My publications</string>
     <string name="type_msg">Type a message...</string>
     <string name="search">Search</string>
-    <string name="price">Price</string>
+    <string name="price">The location or address that the finder can pick up</string>
     <string name="city">City</string>
     <string name="description">Description</string>
     <string name="feedback">Your feedback</string>
     <string name="news_for">News for you</string>
     <string name="create_pub">Create Publication</string>
     <string name="more_details">More details</string>
-    <string name="pub_title">Publication Title</string>
+    <string name="pub_title">Name of the founded item</string>
     <string name="contact_det">Your contact details</string>
     <string name="phone">Phone</string>
     <string name="name_length">The name must be more than 2 characters</string>
@@ -61,4 +61,24 @@
     <string name="surname_name">Surname</string>
     <string name="empty"></string>
     <string name="support_project">Support the project</string>
+    <string name="please_upload_image">Please upload the image</string>
+    <string name="desc_lenght">The description is too small</string>
+    <string name="put_all_lines">Fill in all the lines</string>
+    <string name="almaty">Almaty</string>
+    <string name="nursultan">Nur-Sultan</string>
+    <string name="shymkent">Shymkent</string>
+    <string name="turkistan">Turkistan</string>
+    <string name="aktobe">Aktobe</string>
+    <string name="atyrau">Atyrau</string>
+    <string name="aktau">Aktau</string>
+    <string name="oskemen">Oskemen</string>
+    <string name="oral">Oral</string>
+    <string name="kostanay">Kostanay</string>
+    <string name="karagandy">Karagandy</string>
+    <string name="pavlodar">Pavlodar</string>
+    <string name="petropavl">Petropavl</string>
+    <string name="semei">Semei</string>
+    <string name="kyzylorda">Kyzylorda</string>
+    <string name="no_connection">No internet connection</string>
+
 </resources>

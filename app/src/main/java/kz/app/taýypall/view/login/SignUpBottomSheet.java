@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.redmadrobot.inputmask.MaskedTextChangedListener;
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -46,26 +47,35 @@ public class SignUpBottomSheet extends BottomSheetDialogFragment{
     SharedPrefsHelper sharedPrefs;
 
 
-    String[] courses = { "Almaty", "Nur-Sultan",
-            "Shymkent", "Turkistan",
-            "Aktobe", "Atyrau","Aktau","Oskemen","Oral","Kostanay","Karag'andy","Pavlodar","Petropavl","Semei","Kyzylorda"};
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.sign_up, container, false);
-    }
+        View view =  inflater.inflate(R.layout.sign_up, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final ProgressBar progressBar = getView().findViewById(R.id.progressBar);
+        final ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
         ref  = FirebaseDatabase.getInstance().getReference();
+        String [] courses = {
+                getResources().getString(R.string.almaty),
+                getResources().getString(R.string.nursultan),
+                getResources().getString(R.string.shymkent),
+                getResources().getString(R.string.turkistan),
+                getResources().getString(R.string.aktobe),
+                getResources().getString(R.string.atyrau),
+                getResources().getString(R.string.aktau),
+                getResources().getString(R.string.oskemen),
+                getResources().getString(R.string.oral),
+                getResources().getString(R.string.kostanay),
+                getResources().getString(R.string.karagandy),
+                getResources().getString(R.string.pavlodar),
+                getResources().getString(R.string.petropavl),
+                getResources().getString(R.string.semei),
+                getResources().getString(R.string.kyzylorda)};
 
-        Spinner spino = getView().findViewById(R.id.spinner);
+        Spinner spino = view.findViewById(R.id.spinner);
 
 
         ArrayAdapter<String> ad = new ArrayAdapter<>(getContext(),
@@ -74,7 +84,7 @@ public class SignUpBottomSheet extends BottomSheetDialogFragment{
         spino.setAdapter(ad);
 
         sharedPrefs = new SharedPrefsHelper(getContext());
-        num = getView().findViewById(R.id.numberET);
+        num = view.findViewById(R.id.numberET);
         ref   = FirebaseDatabase.getInstance().getReference();
         numberEditText = view.findViewById(R.id.editText2);
         nameEdiText = view.findViewById(R.id.editText3);
@@ -95,11 +105,7 @@ public class SignUpBottomSheet extends BottomSheetDialogFragment{
                 Toast.makeText(getContext(),R.string.password_length,Toast.LENGTH_SHORT).show();
             }
             else if (!nameEdiText5.getText().toString().equals(editEdiText3.getText().toString())){
-                Toast.makeText(getContext(), R.string.psw_doesnt_match,Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(),"Minimum password length 6",Toast.LENGTH_SHORT).show();
-            }
-            else if (!nameEdiText5.getText().toString().equals(editEdiText3.getText().toString())){
-                Toast.makeText(getContext(),"Passwords don't match",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.psw_doesnt_match,Toast.LENGTH_SHORT).show();
             }
             else{
                 UserItem item = new UserItem(nameEdiText.getText().toString() , numberEditText.getText().toString(), spino.getSelectedItem().toString(), nameEdiText5.getText().toString() );
@@ -111,7 +117,7 @@ public class SignUpBottomSheet extends BottomSheetDialogFragment{
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         numberEditText.getText().toString(),
                         60, TimeUnit.SECONDS,
-                        getActivity(),
+                        requireActivity(),
 
                         new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
                             @Override
@@ -182,6 +188,13 @@ public class SignUpBottomSheet extends BottomSheetDialogFragment{
         );
 
         numberEditText.setHint(listener.placeholder());
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
