@@ -6,14 +6,19 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.datatransport.cct.internal.NetworkConnectionInfo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,10 +33,14 @@ import kz.app.taýypall.view.home.favorites.FavortiresFragment;
 import kz.app.taýypall.view.home.homefragment.HomeFragment;
 import kz.app.taýypall.view.home.messages.MessagesFragment;
 import kz.app.taýypall.view.home.settings.SettingsFragment;
+import kz.app.taýypall.view.login.SignInActivity;
 
 public class HomeActivity extends BaseActivity {
+    LottieAnimationView lottieAnimationView,lottieAnimationView1;
     private long backPressedTime;
     private Toast backToast;
+    ConnectivityManager connectivityManager;
+    BottomNavigationView bottomNavigationView;
     Context context;
     FrameLayout frameLayout;
     HomeFragment homeFragment;
@@ -47,15 +56,19 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         frameLayout = findViewById(R.id.fragment_layout);
         sharedPrefs = new SharedPrefsHelper(this);
+
+        lottieAnimationView = findViewById(R.id.no_connection_anim);
+        lottieAnimationView1 = findViewById(R.id.no_internet_anim);
 
 
 
 
 
         //Bottom nav - start
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         //Bottom nav - end
 
@@ -67,18 +80,36 @@ public class HomeActivity extends BaseActivity {
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
 
-        //Check network connection - start
+        frameLayout.invalidate();
+        bottomNavigationView.invalidate();
 
+
+        //Check network connection - start
 
         if (!isConnected()){
             showMessage(R.string.no_connection);
             frameLayout.setVisibility(View.GONE);
             bottomNavigationView.setVisibility(View.GONE);
+            lottieAnimationView1.setSpeed(1.1f);
+            lottieAnimationView.setSpeed(2.5f);
+            lottieAnimationView1.animate().translationY(-200);
+            //lottieAnimationView.animate().translationY(-45).setDuration(1000).setStartDelay(2500);
+            lottieAnimationView.setVisibility(View.VISIBLE);
+            lottieAnimationView1.setVisibility(View.VISIBLE);
         }
         else{
             frameLayout.setVisibility(View.VISIBLE);
             bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.invalidate();
+            frameLayout.invalidate();
+            lottieAnimationView1.cancelAnimation();
+            lottieAnimationView.cancelAnimation();
+            lottieAnimationView.setVisibility(View.GONE);
+            lottieAnimationView1.setVisibility(View.GONE);
         }
+
+
+
 
 
         //Check network connection - end
@@ -149,6 +180,7 @@ public class HomeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
+
         status("online");
     }
 
@@ -158,11 +190,18 @@ public class HomeActivity extends BaseActivity {
         status("offline");
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isConnected();
+    }
+
     private boolean isConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
+         connectivityManager = (ConnectivityManager) getApplicationContext()
                 .getSystemService(context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null
                 && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+
     }
 
     public void onBackPressed() {
