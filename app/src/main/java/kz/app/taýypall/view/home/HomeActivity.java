@@ -27,6 +27,7 @@ import java.util.HashMap;
 
 import kz.app.taýypall.R;
 import kz.app.taýypall.common.BaseActivity;
+import kz.app.taýypall.common.NetworkChangeListener;
 import kz.app.taýypall.data.SharedPrefsHelper;
 import kz.app.taýypall.view.home.create.CreateFragment;
 import kz.app.taýypall.view.home.favorites.FavortiresFragment;
@@ -36,6 +37,8 @@ import kz.app.taýypall.view.home.settings.SettingsFragment;
 import kz.app.taýypall.view.login.SignInActivity;
 
 public class HomeActivity extends BaseActivity {
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
     LottieAnimationView lottieAnimationView,lottieAnimationView1;
     private long backPressedTime;
     private Toast backToast;
@@ -61,7 +64,6 @@ public class HomeActivity extends BaseActivity {
         sharedPrefs = new SharedPrefsHelper(this);
 
         lottieAnimationView = findViewById(R.id.no_connection_anim);
-        lottieAnimationView1 = findViewById(R.id.no_internet_anim);
 
 
 
@@ -86,27 +88,27 @@ public class HomeActivity extends BaseActivity {
 
         //Check network connection - start
 
-        if (!isConnected()){
-            showMessage(R.string.no_connection);
-            frameLayout.setVisibility(View.GONE);
-            bottomNavigationView.setVisibility(View.GONE);
-            lottieAnimationView1.setSpeed(1.1f);
-            lottieAnimationView.setSpeed(2.5f);
-            lottieAnimationView1.animate().translationY(-200);
-            //lottieAnimationView.animate().translationY(-45).setDuration(1000).setStartDelay(2500);
-            lottieAnimationView.setVisibility(View.VISIBLE);
-            lottieAnimationView1.setVisibility(View.VISIBLE);
-        }
-        else{
-            frameLayout.setVisibility(View.VISIBLE);
-            bottomNavigationView.setVisibility(View.VISIBLE);
-            bottomNavigationView.invalidate();
-            frameLayout.invalidate();
-            lottieAnimationView1.cancelAnimation();
-            lottieAnimationView.cancelAnimation();
-            lottieAnimationView.setVisibility(View.GONE);
-            lottieAnimationView1.setVisibility(View.GONE);
-        }
+//        if (!isConnected()){
+//            showMessage(R.string.no_connection);
+//            frameLayout.setVisibility(View.GONE);
+//            bottomNavigationView.setVisibility(View.GONE);
+//            lottieAnimationView1.setSpeed(1.1f);
+//            lottieAnimationView.setSpeed(2.5f);
+//            lottieAnimationView1.animate().translationY(-200);
+//            //lottieAnimationView.animate().translationY(-45).setDuration(1000).setStartDelay(2500);
+//            lottieAnimationView.setVisibility(View.VISIBLE);
+//            lottieAnimationView1.setVisibility(View.VISIBLE);
+//        }
+//        else{
+//            frameLayout.setVisibility(View.VISIBLE);
+//            bottomNavigationView.setVisibility(View.VISIBLE);
+//            bottomNavigationView.invalidate();
+//            frameLayout.invalidate();
+//            lottieAnimationView1.cancelAnimation();
+//            lottieAnimationView.cancelAnimation();
+//            lottieAnimationView.setVisibility(View.GONE);
+//            lottieAnimationView1.setVisibility(View.GONE);
+//        }
 
 
 
@@ -192,17 +194,24 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void onStart() {
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,intentFilter);
         super.onStart();
-        isConnected();
     }
 
-    private boolean isConnected() {
-         connectivityManager = (ConnectivityManager) getApplicationContext()
-                .getSystemService(context.CONNECTIVITY_SERVICE);
-        return connectivityManager.getActiveNetworkInfo() != null
-                && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
-
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
+
+    //    private boolean isConnected() {
+//         connectivityManager = (ConnectivityManager) getApplicationContext()
+//                .getSystemService(context.CONNECTIVITY_SERVICE);
+//        return connectivityManager.getActiveNetworkInfo() != null
+//                && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+//
+//    }
 
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {

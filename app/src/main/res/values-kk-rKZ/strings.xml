@@ -78,6 +78,8 @@
     <string name="semei">Семей</string>
     <string name="kyzylorda">Қызылорда</string>
     <string name="no_connection">Интернет қосылмаған</string>
+    <string name="retry">Қайталап көріңіз</string>
+
 
 
 </resources>
