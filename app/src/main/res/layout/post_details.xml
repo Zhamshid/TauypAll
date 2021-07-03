@@ -53,32 +53,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:id="@+id/back_arrow_left"
+                        android:src="@drawable/ic_arrow_left"
+                        android:layout_height="20dp"/>
 
 
 
-                    <TextView
-                        android:id="@+id/title_on_appbar"
-                        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
-                        android:text="@string/news_for"
-                        android:textSize="18dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
 
-                    <TextView
-                        android:id="@+id/subtitle_on_appbar"
-                        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-                        android:text="Subtitle"
-                        android:textSize="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
 
                 </LinearLayout>
 
@@ -113,10 +96,12 @@
                 android:layout_height="10dp"
                 android:backgroundTint="@color/browser_actions_bg_grey"
                 />
-            <RelativeLayout
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <TextView
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -129,8 +114,7 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/name"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/Costs" />
-
+                    android:layout_toLeftOf="@id/Costs"/>
                 <TextView
                     android:id="@+id/Costs"
                     android:layout_width="wrap_content"
@@ -139,10 +123,10 @@
                     android:fontFamily="@font/font_artifakt"
                     android:padding="12dp"
                     android:text="557"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +145,7 @@
                     android:layout_toLeftOf="@id/city" />
                 <TextView
                     android:id="@+id/city"
-                    android:textColor="@color/black"
+                    android:textColor="@color/mainColor"
                     android:textStyle="bold"
                     android:fontFamily="@font/font_artifakt_bold"
                     android:textSize="18sp"
@@ -187,7 +171,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/postOpisanie"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_dark"
                     android:textStyle="bold"
                     android:fontFamily="@font/font_artifakt"
                     android:textSize="15sp"
@@ -215,7 +199,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ваш отзыв"
+                        android:text="@string/feedback"
                         android:textSize="23sp"
                         android:layout_weight="90"
                         android:textColor="@color/black"/>

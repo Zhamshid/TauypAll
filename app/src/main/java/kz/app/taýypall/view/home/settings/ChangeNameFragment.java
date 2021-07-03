@@ -50,7 +50,7 @@ public class ChangeNameFragment extends Fragment {
     }
 
     EditText name, surname, birth;
-    TextView iz;
+    TextView iz,change_photo_txt;
     DatabaseReference ref, reference2;
     String edited_full_name;
     Button btn;
@@ -124,6 +124,15 @@ public class ChangeNameFragment extends Fragment {
                 choosePicture();
             }
         });
+
+
+        change_photo_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePicture();
+            }
+        });
+
 
 
         btn.setOnClickListener(v -> {

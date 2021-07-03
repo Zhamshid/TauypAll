@@ -60,22 +60,7 @@ public class HomeFragment extends Fragment {
 
 
         TextView search_bar = view.findViewById(R.id.search_bar);
-//        search_bar.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                searchUsers(s.toString());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+
 
 
     }
@@ -90,28 +75,6 @@ public class HomeFragment extends Fragment {
         readPosts();
     }
 
-//    private void searchUsers(String s){
-//        Query query = FirebaseDatabase.getInstance().getReference().child("PRODUCT")
-//                .orderByKey().startAt(s).endAt(s+"\uf8ff");
-//        Log.d("product",query.toString());
-//
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                post1.clear();
-//                for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-//                    ProductItem post2 = snapshot1.getValue(ProductItem.class);
-//                    post1.add(post2);
-//                }
-//                homeReadPosts.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                readPosts();
-//            }
-//        });
-//    }
 
     private void readPosts() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("PRODUCT");

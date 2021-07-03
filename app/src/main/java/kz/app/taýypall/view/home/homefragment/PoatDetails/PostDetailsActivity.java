@@ -52,9 +52,9 @@ import kz.app.taýypall.view.home.messages.MessagePage;
 
 public class PostDetailsActivity extends BaseActivity {
     String mPostName, z1, b1, c1, o1;
-    ImageView imageFoto, like, liked;
+    ImageView imageFoto, like, liked, back_left_arrow;
     String isLiked;
-    TextView Name, Cost, City, Opisanie, Username, statusAvg, commetTotal,yourRt;
+    TextView Name, Cost, City, Opisanie, Username, statusAvg, commetTotal, yourRt;
     String phone;
     CircularImageView profile_photo, sts_on, sts_off;
     SharedPrefsHelper sharedPrefs;
@@ -106,10 +106,16 @@ public class PostDetailsActivity extends BaseActivity {
         statusAvg = findViewById(R.id.status_avg);
         commetTotal = findViewById(R.id.status_count);
         yourRt = findViewById(R.id.yourRt);
+        back_left_arrow = findViewById(R.id.back_arrow_left);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         sharedPrefs = new SharedPrefsHelper(getApplicationContext());
+
+
+        back_left_arrow.setOnClickListener(v -> {
+            onBackPressed();
+        });
 
         rat1 = new ArrayList<>();
         //getSharedPrefPhone
@@ -137,7 +143,7 @@ public class PostDetailsActivity extends BaseActivity {
                     RatingItem rt = snapshot1.getValue(RatingItem.class);
                     t = t + Float.parseFloat(rt.getRating());
                     e = e + 1;
-                    if(rt.getUser().equals(sharedPrefs.getPhoneNumber())){
+                    if (rt.getUser().equals(sharedPrefs.getPhoneNumber())) {
                         yourRt.setText(rt.getRating());
                     }
                 }
@@ -360,6 +366,7 @@ public class PostDetailsActivity extends BaseActivity {
                 FirebaseDatabase.getInstance().getReference("PRODUCT").
                         child(mPostName).setValue(null);
                 showMessage(R.string.post_deleted);
+                onBackPressed();
             }
         });
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("PRODUCT").child(mPostName);
@@ -434,5 +441,14 @@ public class PostDetailsActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         status("offline");
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
     }
 }
