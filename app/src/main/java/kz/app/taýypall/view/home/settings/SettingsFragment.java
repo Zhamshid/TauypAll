@@ -157,7 +157,7 @@ public class SettingsFragment extends BaseFragment {
 
 
                 profileAdapter.notifyDataSetChanged();
-//
+
                 hideLoading();
             }
 
@@ -173,10 +173,11 @@ public class SettingsFragment extends BaseFragment {
             public void onClick(int position) {
                 switch (position) {
                     case 0:
-                        openFragment(new ChangeNameFragment());
+                        openActivity(ChangeNameActivity.class);
                         break;
                     case 1:
-                        openFragment(new ChangePassFragment());
+                        //openFragment(new ChangePassFragment());
+                        openActivity(ChangePassActivity.class);
                         break;
                     case 2:
                         showChangeLanguageDialog();
@@ -221,7 +222,8 @@ public class SettingsFragment extends BaseFragment {
 
     private void showChangeLanguageDialog() {
         final String[] listItems = {"Қазақша", "Русский", "English"};
-        AlertDialog.Builder Builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder Builder = new AlertDialog.Builder(requireContext(),
+                R.style.AlertDialog_AppCompat_Light_NoActionBar);
         Builder.setTitle(R.string.lan_change_title);
         SharedPreferences preferences = getActivity().getSharedPreferences("Settings", MODE_PRIVATE);
         int item_selected = preferences.getInt("CheckedItem", 2);
@@ -244,8 +246,8 @@ public class SettingsFragment extends BaseFragment {
         AlertDialog Dialog = Builder.create();
         Dialog.show();
 
-        Dialog.getWindow().setLayout(MATCH_PARENT,
-                1000);
+        Dialog.getWindow().setLayout(WRAP_CONTENT,
+                500);
         Dialog.getWindow().getAttributes().windowAnimations = R.style.animation_dial;
         Dialog.getWindow().setGravity(Gravity.CENTER);
     }

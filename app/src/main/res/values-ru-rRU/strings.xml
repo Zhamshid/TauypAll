@@ -80,8 +80,5 @@
     <string name="no_connection">Нет подключения к интернету</string>
     <string name="retry">Повторить попытку</string>
     <string name="searching_post">Поиск...</string>
-
-
-
-
+    <string name="psw_simple">Пароль очень простой</string>
 </resources>

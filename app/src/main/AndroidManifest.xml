@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="kz.app.taýypall"
-    xmlns:dist="http://schemas.android.com/apk/distribution">
+    package="kz.app.taýypall">
 
     <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,34 +17,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaýypAll">
-        <activity
-            android:name="kz.app.taýypall.view.login.ForgotPasswordActivity">
-        </activity>
 
-
-        <activity
-            android:name="kz.app.taýypall.view.login.VerifyNumberActivity">
-        </activity>
-
-
+        <activity android:name=".view.home.settings.ChangePassActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
 
         <activity
-            android:name="kz.app.taýypall.view.home.settings.CurrentUserPostsActivity"
+            android:name=".view.login.ForgotPasswordActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name="kz.app.taýypall.view.home.homefragment.PoatDetails.PostDetailsActivity"
+            android:name=".view.login.VerifyNumberActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name="kz.app.taýypall.view.home.HomeActivity"
+            android:name=".view.home.settings.CurrentUserPostsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".view.home.settings.ChangeNameActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".view.home.homefragment.PoatDetails.PostDetailsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".view.home.HomeActivity"
             android:windowSoftInputMode="adjustNothing" />
+
         <activity
-            android:name="kz.app.taýypall.view.home.messages.MessagePage"
+            android:name=".view.home.messages.MessagePage"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name="kz.app.taýypall.view.login.SignInActivity"
+            android:name=".view.login.SignInActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name="kz.app.taýypall.MainActivity"
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +65,7 @@
         </activity>
 
         <service
-            android:name="kz.app.taýypall.notification.MyFirebaseMessaging"
+            android:name=".notification.MyFirebaseMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

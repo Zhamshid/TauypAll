@@ -71,7 +71,6 @@ public class BaseActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, className);
         startActivity(intent);
-        finish();
 
     }
 

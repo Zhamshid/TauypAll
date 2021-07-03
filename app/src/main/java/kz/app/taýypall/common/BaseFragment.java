@@ -67,8 +67,7 @@ public class BaseFragment extends Fragment {
 
         Intent intent = new Intent(getContext(), className);
         startActivity(intent);
-        getActivity();
-        startActivity(intent);
+
 
     }
 

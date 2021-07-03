@@ -250,8 +250,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         Dialog.show();
         Dialog.getWindow().setLayout(WRAP_CONTENT,
                 500);
-//        Dialog.getWindow().setLayout(MATCH_PARENT,
-//                1000);
+
         Dialog.getWindow().getAttributes().windowAnimations = R.style.animation_dial;
         Dialog.getWindow().setGravity(Gravity.CENTER);
     }

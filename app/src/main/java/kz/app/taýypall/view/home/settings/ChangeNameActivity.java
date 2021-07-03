@@ -1,23 +1,21 @@
 package kz.app.taýypall.view.home.settings;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,20 +33,12 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import kz.app.taýypall.R;
+import kz.app.taýypall.common.BaseActivity;
 import kz.app.taýypall.data.AppConstants;
 import kz.app.taýypall.data.SharedPrefsHelper;
 import kz.app.taýypall.view.home.HomeActivity;
 
-public class ChangeNameFragment extends Fragment {
-
-    public final static String ARG_NAME = "ARG_NAME";
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_change_name, container, false);
-    }
-
+public class ChangeNameActivity extends BaseActivity {
     EditText name, surname, birth;
     TextView iz,change_photo_txt;
     DatabaseReference ref, reference2;
@@ -64,24 +54,24 @@ public class ChangeNameFragment extends Fragment {
     private String edited_name, edited_name2;
     SharedPrefsHelper sharedPrefs;
 
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_change_name);
 
-        name = getView().findViewById(R.id.editName);
-        surname = getView().findViewById(R.id.editSurn);
-        iz = getView().findViewById(R.id.toolbar_title);
-        btn = getView().findViewById(R.id.button);
-        profile_image = getView().findViewById(R.id.profile_photo);
-        back_left_arrow = getView().findViewById(R.id.back_arrow_left);
+        name = findViewById(R.id.editName);
+        surname = findViewById(R.id.editSurn);
+        iz = findViewById(R.id.toolbar_title);
+        btn = findViewById(R.id.button);
+        profile_image = findViewById(R.id.profile_photo);
+        change_photo_txt = findViewById(R.id.change_photo);
+        back_left_arrow = findViewById(R.id.back_arrow_left);
 
 
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        birth = getView().findViewById(R.id.editBirth);
+        birth = findViewById(R.id.editBirth);
 
         ref = FirebaseDatabase.getInstance().getReference();
-        sharedPrefs = new SharedPrefsHelper(getContext());
+        sharedPrefs = new SharedPrefsHelper(getBaseContext());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         back_left_arrow.setVisibility(View.VISIBLE);
@@ -125,24 +115,25 @@ public class ChangeNameFragment extends Fragment {
             }
         });
 
-
-        change_photo_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choosePicture();
-            }
-        });
+        try{
+            change_photo_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    choosePicture();
+                }
+            });
+        }catch (Exception e){}
 
 
 
         btn.setOnClickListener(v -> {
 
-            name = getView().findViewById(R.id.editName);
-            surname = getView().findViewById(R.id.editSurn);
+            name = findViewById(R.id.editName);
+            surname = findViewById(R.id.editSurn);
             if (name.length() == 0 || name.length() < 2) {
-                Toast.makeText(getContext(), R.string.name_length, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.name_length, Toast.LENGTH_LONG).show();
             } else if (surname.length() == 0 || surname.length() < 2) {
-                Toast.makeText(getContext(), R.string.name_length, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.name_length, Toast.LENGTH_LONG).show();
             } else {
 
                 ref.child(AppConstants.USERS).
@@ -157,17 +148,13 @@ public class ChangeNameFragment extends Fragment {
                         upd_name = (edited_full_name);
 
 
-                        //ProfileItem
-                        //UserItem item = new UserItem(upd_name)
-
-
                         ref.child("USERS")
                                 .child(number)
                                 .child(AppConstants.INFO)
                                 .child("name")
                                 .setValue(upd_name);
 
-                        ((HomeActivity) getActivity()).openFragment(new SettingsFragment());
+
                     }
 
                     @Override
@@ -176,23 +163,19 @@ public class ChangeNameFragment extends Fragment {
                     }
                 });
             }
-    });
-}
+            openActivity(HomeActivity.class);
+        });
 
 
-    public static ChangeNameFragment newInstance(String s) {
-
-        Bundle args = new Bundle();
-        args.putString(ARG_NAME, s);
-
-        ChangeNameFragment fragment = new ChangeNameFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 
+
     public void onBackPressed() {
-        super.getActivity().onBackPressed();
-        ((HomeActivity) getActivity()).openFragment(new SettingsFragment());
+        super.onBackPressed();
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
 
 
     }
@@ -215,7 +198,7 @@ public class ChangeNameFragment extends Fragment {
     }
 
     private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(getContext());
+        final ProgressDialog pd = new ProgressDialog(getBaseContext());
         pd.setTitle("Uploading Image...");
         pd.show();
         String number = sharedPrefs.getPhoneNumber();
@@ -226,7 +209,7 @@ public class ChangeNameFragment extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         pd.dismiss();
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Image Uploaded",
+                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded",
                                 Snackbar.LENGTH_SHORT).show();
                     }
                 })
@@ -236,7 +219,7 @@ public class ChangeNameFragment extends Fragment {
                         pd.dismiss();
                         // Handle unsuccessful uploads
                         // ...
-                        Toast.makeText(getContext(), "Failed to Upload", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Failed to Upload", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -245,8 +228,5 @@ public class ChangeNameFragment extends Fragment {
                 pd.setMessage("Uploading " + (int) progressPercent + "%");
             }
         });
-
     }
-
-
 }

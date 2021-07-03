@@ -14,6 +14,7 @@
             android:layout_width="20dp"
             android:id="@+id/back_arrow_left"
             android:visibility="gone"
+            android:elevation="20dp"
             android:src="@drawable/ic_arrow_left"
             android:layout_height="20dp"/>
 
