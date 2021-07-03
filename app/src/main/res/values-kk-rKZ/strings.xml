@@ -81,4 +81,6 @@
     <string name="retry">Қайталап көріңіз</string>
     <string name="searching_post">Іздеу...</string>
     <string name="psw_simple">Пароль өте қарапайым</string>
+    <string name="uploading">Жүктелуде...</string>
+
 </resources>

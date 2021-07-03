@@ -96,7 +96,6 @@ public class CreateFragment extends BaseFragment {
                 String city_name = snapshot.child("city").getValue().toString();
                 City.setText(city_name);
                 Phone.setText(number);
-                //showMessage("Successful login");
 
             }
 
@@ -125,7 +124,7 @@ public class CreateFragment extends BaseFragment {
                 if (TextUtils.isEmpty(Zogolovok) || TextUtils.isEmpty(Baga) ||
                         TextUtils.isEmpty(Opisanie) ||
                         TextUtils.isEmpty(phone)) {
-                    Toast.makeText(getContext(), "Заполните все строки!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.put_all_lines, Toast.LENGTH_SHORT).show();
                 } else if (opisanie.length() < 25) {
                     showMessage(R.string.desc_lenght);
                 } else if (imageUri == null) {
@@ -156,7 +155,7 @@ public class CreateFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            Toast.makeText(getContext(), "image alindi", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), "image alindi", Toast.LENGTH_LONG).show();
             imageUri = data.getData();
             Picasso.get().load(imageUri);
         }
@@ -186,7 +185,7 @@ public class CreateFragment extends BaseFragment {
         storageReference = FirebaseStorage.getInstance().getReference().child("Images");
         ProgressDialog progressDialog
                 = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle(R.string.uploading);
         progressDialog.show();
 
         // adding listeners on upload

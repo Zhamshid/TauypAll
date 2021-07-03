@@ -81,4 +81,6 @@
     <string name="retry">Повторить попытку</string>
     <string name="searching_post">Поиск...</string>
     <string name="psw_simple">Пароль очень простой</string>
+    <string name="uploading">Загрузка...</string>
+
 </resources>
