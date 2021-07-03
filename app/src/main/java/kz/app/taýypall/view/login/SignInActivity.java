@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 import kz.app.taýypall.R;
+import kz.app.taýypall.common.BaseActivity;
 import kz.app.taýypall.data.AppConstants;
 import kz.app.taýypall.data.SharedPrefsHelper;
 import kz.app.taýypall.view.home.HomeActivity;
@@ -40,7 +41,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignInActivity extends BaseActivity implements View.OnClickListener {
     DatabaseReference ref;
     PhoneAuthProvider ver_phone;
     private long backPressedTime;
@@ -122,7 +123,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.SigninBT: {
-
                 signIn();
                 break;
             }
@@ -189,7 +189,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 //String phone_number = snapshot.child("phone").getValue().toString();
                 String password = snapshot.child("password").getValue().toString();
                 String name = snapshot.child("name").getValue().toString();
-                //showMessage("Successful login");
                 if (password.equals(passwordET.getText().toString())) {
                     sharedPrefs.setPhoneNumber(number.getText().toString().trim());
                     sharedPrefs.setIslogged(true);
@@ -203,6 +202,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     finish();
                 } else {
                     showMessage(R.string.num_psw_inc);
+
                 }
             }
 
@@ -277,22 +277,22 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         setLocale(language, item_selected);
     }
 
-    public void showMessage(int s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
+//    public void showMessage(int s) {
+//        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+//    }
 
 
-    public void openActivity(Class className) {
-
-        Intent intent = new Intent(this, className);
-        startActivity(intent);
-        finish();
-
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_layout,fragment)
-//                .commit();
-    }
+//    public void openActivity(Class className) {
+//
+//        Intent intent = new Intent(this, className);
+//        startActivity(intent);
+//        finish();
+//
+////        getFragmentManager()
+////                .beginTransaction()
+////                .replace(R.id.fragment_layout,fragment)
+////                .commit();
+//    }
 
     public DatabaseReference getRef() {
         return ref;

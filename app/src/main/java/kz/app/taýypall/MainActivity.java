@@ -12,7 +12,7 @@ import kz.app.taýypall.view.login.SignInActivity;
 
 public class MainActivity extends AppCompatActivity {
     LottieAnimationView lottieAnimationView;
-    private static int SPLASH_TIME_OUT = 500;
+    private static int SPLASH_TIME_OUT = 4500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

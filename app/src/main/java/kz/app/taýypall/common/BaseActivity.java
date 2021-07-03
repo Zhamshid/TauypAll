@@ -1,5 +1,6 @@
 package kz.app.taýypall.common;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -20,18 +21,35 @@ import kz.app.taýypall.R;
 
 public class BaseActivity extends AppCompatActivity {
 
-
     DatabaseReference ref;
-
+    protected ProgressDialog progressDialog;
     PhoneAuthProvider ver_phone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        progressDialog = new ProgressDialog(getBaseContext());
+        progressDialog.setMessage(("Please wait"));
+        progressDialog.setCancelable(false);
         ref = FirebaseDatabase.getInstance().getReference();
         ver_phone = PhoneAuthProvider.getInstance();
 
+    }
+
+    public void hideLoading() {
+//        progressDialog.dismiss();
+
+        try {
+            if (progressDialog.isShowing())
+                progressDialog.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void showLoading() {
+        if (progressDialog != null && !progressDialog.isShowing()) progressDialog.show();
     }
 
 

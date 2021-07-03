@@ -81,5 +81,6 @@
     <string name="kyzylorda">Kyzylorda</string>
     <string name="no_connection">No internet connection</string>
     <string name="retry">Retry</string>
+    <string name="searching_post">Search...</string>
 
 </resources>

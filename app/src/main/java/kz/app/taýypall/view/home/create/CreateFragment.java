@@ -37,17 +37,18 @@ import kz.app.taýypall.common.BaseFragment;
 import kz.app.taýypall.data.AppConstants;
 import kz.app.taýypall.data.SharedPrefsHelper;
 import kz.app.taýypall.model.ProductItem;
+import kz.app.taýypall.view.home.homefragment.HomeFragment;
 
 import static android.app.Activity.RESULT_OK;
 
 
 public class CreateFragment extends BaseFragment {
-    private  static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_IMAGE_REQUEST = 1;
     private EditText zogolovok;
     private EditText baga;
     private EditText opisanie;
     private EditText Phone;
-    private  EditText City;
+    private EditText City;
     private TextView toolbar;
     private Button saveButton;
     private ImageButton imgBtn;
@@ -55,7 +56,7 @@ public class CreateFragment extends BaseFragment {
     private Uri imageUri;
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference,reference2;
+    DatabaseReference reference, reference2;
     StorageReference storageReference;
 
 
@@ -64,7 +65,6 @@ public class CreateFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_create, container, false);
     }
-
 
 
     @Override
@@ -87,15 +87,15 @@ public class CreateFragment extends BaseFragment {
 
         String number = sharedPrefs.getPhoneNumber();
         reference2 = FirebaseDatabase.getInstance().getReference("USERS");
-        Phone.setText(number);
 
         reference2.child(number).child(AppConstants.INFO).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //String phone_number = snapshot.child("phone").getValue().toString();
-               // String name = snapshot.child("name").getValue().toString();
+                // String name = snapshot.child("name").getValue().toString();
                 String city_name = snapshot.child("city").getValue().toString();
                 City.setText(city_name);
+                Phone.setText(number);
                 //showMessage("Successful login");
 
             }
@@ -119,19 +119,18 @@ public class CreateFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String Zogolovok = zogolovok.getText().toString();
-                String  Baga=baga.getText().toString();
+                String Baga = baga.getText().toString();
                 String Opisanie = opisanie.getText().toString();
                 String phone = Phone.getText().toString();
-                if(TextUtils.isEmpty(Zogolovok) || TextUtils.isEmpty(Baga) ||
-                        TextUtils.isEmpty(Opisanie)  ||
-                        TextUtils.isEmpty(phone)){
-                    Toast.makeText(getContext(),"Заполните все строки!", Toast.LENGTH_SHORT).show();
-                } else if (opisanie.length()<25){
+                if (TextUtils.isEmpty(Zogolovok) || TextUtils.isEmpty(Baga) ||
+                        TextUtils.isEmpty(Opisanie) ||
+                        TextUtils.isEmpty(phone)) {
+                    Toast.makeText(getContext(), "Заполните все строки!", Toast.LENGTH_SHORT).show();
+                } else if (opisanie.length() < 25) {
                     showMessage(R.string.desc_lenght);
-                }else if(imageUri == null){
+                } else if (imageUri == null) {
                     showMessage(R.string.please_upload_image);
-                }
-                else{
+                } else {
                     uploadImage();
                 }
             }
@@ -144,35 +143,37 @@ public class CreateFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
-    private void openFileChooser(){
+    private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         //intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
         //startActivityForResult(Intent.createChooser(intent, "Select Image(s)"),PICK_IMAGE_REQUEST);
     }
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  ){
-            Toast.makeText(getContext(),"image alindi",Toast.LENGTH_LONG).show();
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            Toast.makeText(getContext(), "image alindi", Toast.LENGTH_LONG).show();
             imageUri = data.getData();
             Picasso.get().load(imageUri);
         }
     }
-    private void uploadImage(){
+
+    private void uploadImage() {
         String Zogolovok = zogolovok.getText().toString();
-        String  Baga=baga.getText().toString();
+        String Baga = baga.getText().toString();
         String Opisanie = opisanie.getText().toString();
         String phone = Phone.getText().toString();
         String city = City.getText().toString();
         String phoneSharedP = sharedPrefs.getPhoneNumber();
         reference = FirebaseDatabase.getInstance().getReference("PRODUCT");
 
-        String time = Zogolovok + "-"+System.currentTimeMillis();
+        String time = Zogolovok + "-" + System.currentTimeMillis();
 
-        ProductItem helperClass = new ProductItem(Zogolovok, Baga, Opisanie , phone,city,phoneSharedP,time);
+        ProductItem helperClass = new ProductItem(Zogolovok, Baga, Opisanie, phone, city, phoneSharedP, time);
         reference.child(time).child("ProductInfo").setValue(helperClass);
 
         zogolovok.setText("");
@@ -180,8 +181,6 @@ public class CreateFragment extends BaseFragment {
         opisanie.setText("");
         Phone.setText("");
         City.setText("");
-
-
 
 
         storageReference = FirebaseStorage.getInstance().getReference().child("Images");
@@ -198,23 +197,26 @@ public class CreateFragment extends BaseFragment {
 
                             @Override
                             public void onSuccess(
-                                    UploadTask.TaskSnapshot taskSnapshot)
-                            {
+                                    UploadTask.TaskSnapshot taskSnapshot) {
                                 // Image uploaded successfully
                                 // Dismiss dialog
+
+
+
                                 progressDialog.dismiss();
-                                Toast
-                                        .makeText(getContext(),
-                                                "Post Salindi!!",
-                                                Toast.LENGTH_SHORT)
+                                Toast.makeText(getContext(), "Post Salindi!!", Toast.LENGTH_SHORT)
                                         .show();
+                                try {
+                                    openFragment(new HomeFragment());
+                                }catch (Exception e){}
+
+
                             }
                         })
 
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e)
-                    {
+                    public void onFailure(@NonNull Exception e) {
 
                         // Error, Image not uploaded
                         progressDialog.dismiss();
@@ -232,18 +234,15 @@ public class CreateFragment extends BaseFragment {
                             // percentage on the dialog box
                             @Override
                             public void onProgress(
-                                    UploadTask.TaskSnapshot taskSnapshot)
-                            {
+                                    UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress
                                         = (100.0
                                         * taskSnapshot.getBytesTransferred()
                                         / taskSnapshot.getTotalByteCount());
                                 progressDialog.setMessage(
                                         "Uploaded "
-                                                + (int)progress + "%");
+                                                + (int) progress + "%");
                             }
                         });
-
     }
-
 }
